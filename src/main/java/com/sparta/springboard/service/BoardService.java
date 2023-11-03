@@ -7,7 +7,6 @@ import com.sparta.springboard.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.beans.Transient;
 import java.util.List;
 
 @Service
@@ -21,6 +20,10 @@ public class BoardService {
 
     public List<BoardResponseDto> getBoard() {
         return boardRepository.findAllByOrderByModifiedAtDesc().stream().map(BoardResponseDto::new).toList();
+    }
+
+    public List<BoardResponseDto> getBoardByDetail(String keyword) {
+        return boardRepository.findAllByDetailContainsOrderByModifiedAtDesc(keyword).stream().map(BoardResponseDto::new).toList();
     }
 
     public BoardResponseDto createBoard(BoardRequestDto boardRequestDto) {
@@ -41,6 +44,11 @@ public class BoardService {
         board.update(boardRequestDto);
         return new BoardResponseDto(board);
     }
+    @Transactional
+    public void updateView(Long id) {
+        Board board =findBoardById(id);
+        board.plusView(board);
+    }
 
     public Long deleteBoard(Long id) {
         Board board =findBoardById(id);
@@ -59,5 +67,4 @@ public class BoardService {
                 () -> new IllegalArgumentException("선택한 게시물이 존재하지 않거나, 비밀번호가 일치하지 않습니다.")
         );
     }
-
 }

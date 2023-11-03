@@ -22,6 +22,11 @@ public class BoardController {
         return boardService.getBoard();
     }
 
+    @GetMapping("/contents/{keyword}")
+    public List<BoardResponseDto> getBoarByDetail(@PathVariable String keyword){
+        return boardService.getBoardByDetail(keyword);
+    }
+
     @GetMapping("/create")
     public BoardResponseDto createBoard(@RequestBody BoardRequestDto boardRequestDto){
         return boardService.createBoard(boardRequestDto);
@@ -29,6 +34,7 @@ public class BoardController {
 
     @GetMapping("/contents/{id}")
     public BoardResponseDto getBoardById(@PathVariable Long id){
+        boardService.updateView(id);
         return boardService.getBoardById(id);
     }
 

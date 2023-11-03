@@ -28,7 +28,8 @@ public class Board extends Timestamped {
     @ColumnDefault("0")
     private Long view;
 
-    public Board(BoardRequestDto boardRequestDto){
+
+    public Board(BoardRequestDto boardRequestDto) {
         this.titile = boardRequestDto.getTitile();
         this.detail = boardRequestDto.getDetail();
         this.writer = boardRequestDto.getWriter();
@@ -38,5 +39,9 @@ public class Board extends Timestamped {
     public void update(BoardRequestDto boardRequestDto) {
         this.titile = boardRequestDto.getTitile();
         this.detail = boardRequestDto.getDetail();
+    }
+
+    public void plusView(Board board) {
+        this.view = board.getView() + 1;
     }
 }
