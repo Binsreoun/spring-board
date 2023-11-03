@@ -1,10 +1,9 @@
 package com.sparta.springboard.controller;
 
+import com.sparta.springboard.dto.BoardRequestDto;
 import com.sparta.springboard.dto.BoardResponseDto;
 import com.sparta.springboard.service.BoardService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,4 +17,13 @@ public class BoardController {
         this.boardService = boardService;
     }
 
+    @GetMapping("/contents")
+    public List<BoardResponseDto> getBoard(){
+        return boardService.getBoard();
+    }
+
+    @GetMapping("/create")
+    public BoardResponseDto createBoard(@RequestBody BoardRequestDto boardRequestDto){
+        return boardService.createBoard(boardRequestDto);
+    }
 }

@@ -1,5 +1,6 @@
 package com.sparta.springboard.entity;
 
+import com.sparta.springboard.dto.BoardRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,10 +28,10 @@ public class Board extends Timestamped {
     @ColumnDefault("0")
     private Long view;
 
-    public Board(String titile,String detail,String writer,String password){
-        this.titile = titile;
-        this.detail = detail;
-        this.writer = writer;
-        this.password = password;
+    public Board(BoardRequestDto boardRequestDto){
+        this.titile = boardRequestDto.getTitile();
+        this.detail = boardRequestDto.getDetail();
+        this.writer = boardRequestDto.getWriter();
+        this.password = boardRequestDto.getPassword();
     }
 }
