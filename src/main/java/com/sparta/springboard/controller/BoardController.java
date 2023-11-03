@@ -26,4 +26,20 @@ public class BoardController {
     public BoardResponseDto createBoard(@RequestBody BoardRequestDto boardRequestDto){
         return boardService.createBoard(boardRequestDto);
     }
+
+    @GetMapping("/contents/{id}")
+    public BoardResponseDto getBoardById(@PathVariable Long id){
+        return boardService.getBoardById(id);
+    }
+
+    @PostMapping("/update/{id}")
+    public BoardResponseDto updateBoard(@PathVariable Long id,@RequestBody BoardRequestDto boardRequestDto){
+        return boardService.updateBoard(id,boardRequestDto);
+    }
+
+    @PostMapping("/delete/{id}")
+    public Long updateBoard(@PathVariable Long id){
+        return boardService.deleteBoard(id);
+    }
+
 }
