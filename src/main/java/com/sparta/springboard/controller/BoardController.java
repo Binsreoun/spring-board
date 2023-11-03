@@ -12,4 +12,10 @@ import java.util.List;
 @RequestMapping("/board")
 public class BoardController {
 
+    private final BoardService boardService;
+
+    public BoardController(BoardService boardService) {
+        this.boardService = boardService;
+    }
+
 }
