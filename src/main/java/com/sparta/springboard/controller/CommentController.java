@@ -34,7 +34,7 @@ public class CommentController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public Long updateBoard(@PathVariable Long id,@RequestBody Map<String, String> passwordMap){
+    public Long deleteBoard(@PathVariable Long id,@RequestBody Map<String, String> passwordMap){
         return commentService.deleteComment(id,passwordMap.get("password"));
     }
 
