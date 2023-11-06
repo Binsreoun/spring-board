@@ -32,7 +32,7 @@
 
 ### 1. Use Case Diagram
 링크 : https://app.diagrams.net/#G184is9FzfZg01rvKNC-hzMSh6N2J7RIL1
-![image](https://github.com/Binsreoun/spring-board/assets/69248377/feedb150-8469-4361-a5a3-cc73c70b3d55)
+![image](https://github.com/Binsreoun/spring-board/assets/69248377/2811ac72-b978-4b9d-b7d3-6d2fe997f72f)
 
 ### 2. ERD
 링크 : https://www.erdcloud.com/d/gTEftvyRw8TESBFqx
