@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class BoardRequestDto {
-    private String titile;
+    private String title;
     private String detail;
     private String writer;
     private String password;

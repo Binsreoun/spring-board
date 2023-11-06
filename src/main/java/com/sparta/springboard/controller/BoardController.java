@@ -6,6 +6,7 @@ import com.sparta.springboard.service.BoardService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/board")
@@ -22,18 +23,18 @@ public class BoardController {
         return boardService.getBoard();
     }
 
-    @GetMapping("/contents/{keyword}")
-    public List<BoardResponseDto> getBoarByDetail(@PathVariable String keyword){
+    @GetMapping("/contents/keyword")
+    public List<BoardResponseDto> getBoarByDetail(String keyword){
         return boardService.getBoardByDetail(keyword);
     }
 
-    @GetMapping("/create")
+    @PostMapping("/create")
     public BoardResponseDto createBoard(@RequestBody BoardRequestDto boardRequestDto){
         return boardService.createBoard(boardRequestDto);
     }
 
-    @GetMapping("/contents/{id}")
-    public BoardResponseDto getBoardById(@PathVariable Long id){
+    @GetMapping("/contents/detail")
+    public BoardResponseDto getBoardById(Long id){
         boardService.updateView(id);
         return boardService.getBoardById(id);
     }
@@ -44,8 +45,8 @@ public class BoardController {
     }
 
     @PostMapping("/delete/{id}")
-    public Long updateBoard(@PathVariable Long id){
-        return boardService.deleteBoard(id);
+    public Long deleteBoard(@PathVariable Long id,@RequestBody Map<String, String> passwordMap){
+        return boardService.deleteBoard(id,passwordMap.get("password"));
     }
 
 }

@@ -16,32 +16,37 @@ public class Board extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "titile", nullable = false)
-    private String titile;
+    @Column(name = "title", nullable = false)
+    private String title;
     @Column(name = "detail", nullable = false, length = 1000)
     private String detail;
     @Column(name = "writer", nullable = false)
     private String writer;
     @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "view", nullable = false)
+    @Column(name = "view")
     @ColumnDefault("0")
     private Long view;
 
 
     public Board(BoardRequestDto boardRequestDto) {
-        this.titile = boardRequestDto.getTitile();
+        this.title = boardRequestDto.getTitle();
         this.detail = boardRequestDto.getDetail();
         this.writer = boardRequestDto.getWriter();
         this.password = boardRequestDto.getPassword();
     }
 
     public void update(BoardRequestDto boardRequestDto) {
-        this.titile = boardRequestDto.getTitile();
+        this.title = boardRequestDto.getTitle();
         this.detail = boardRequestDto.getDetail();
     }
 
     public void plusView(Board board) {
         this.view = board.getView() + 1;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.view = this.view == null ? 0 : this.view;
     }
 }

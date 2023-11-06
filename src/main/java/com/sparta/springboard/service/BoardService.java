@@ -50,8 +50,8 @@ public class BoardService {
         board.plusView(board);
     }
 
-    public Long deleteBoard(Long id) {
-        Board board =findBoardById(id);
+    public Long deleteBoard(Long id,String password) {
+        Board board = findBoardAndCheckedPasswordByPassword(id,password);
         boardRepository.delete(board);
         return id;
     }
@@ -64,6 +64,12 @@ public class BoardService {
 
     private Board findBoardAndCheckedPassword(Long id,BoardRequestDto boardRequestDto) {
         return boardRepository.findById(id).filter(board -> board.getPassword().equals(boardRequestDto.getPassword())).orElseThrow(
+                () -> new IllegalArgumentException("선택한 게시물이 존재하지 않거나, 비밀번호가 일치하지 않습니다.")
+        );
+    }
+
+    private Board findBoardAndCheckedPasswordByPassword(Long id,String password) {
+        return boardRepository.findById(id).filter(board -> board.getPassword().equals(password)).orElseThrow(
                 () -> new IllegalArgumentException("선택한 게시물이 존재하지 않거나, 비밀번호가 일치하지 않습니다.")
         );
     }
