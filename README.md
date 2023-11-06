@@ -40,3 +40,8 @@
 
 ### 3. API 명세서
 링크 : https://documenter.getpostman.com/view/30872998/2s9YXfb3Wf#9670828e-196c-4bd9-9945-e29e46eca95b
+![image](https://github.com/Binsreoun/spring-board/assets/69248377/f5ae4cea-6ad2-421d-be89-aba13f85b067)
+
+
+
+
