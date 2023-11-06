@@ -33,7 +33,7 @@ public class CommentController {
         return commentService.updateComment(id,commentRequestDto);
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public Long updateBoard(@PathVariable Long id,@RequestBody Map<String, String> passwordMap){
         return commentService.deleteComment(id,passwordMap.get("password"));
     }

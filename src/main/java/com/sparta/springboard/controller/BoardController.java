@@ -33,8 +33,8 @@ public class BoardController {
         return boardService.createBoard(boardRequestDto);
     }
 
-    @GetMapping("/contents/detail")
-    public BoardResponseDto getBoardById(Long id){
+    @GetMapping("/contents/detail/{id}")
+    public BoardResponseDto getBoardById(@PathVariable Long id){
         boardService.updateView(id);
         return boardService.getBoardById(id);
     }
@@ -44,7 +44,7 @@ public class BoardController {
         return boardService.updateBoard(id,boardRequestDto);
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public Long deleteBoard(@PathVariable Long id,@RequestBody Map<String, String> passwordMap){
         return boardService.deleteBoard(id,passwordMap.get("password"));
     }
