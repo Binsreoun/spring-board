@@ -6,9 +6,10 @@ import com.sparta.springboard.service.CommentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/Comment")
+@RequestMapping("/comment")
 public class CommentController {
 
     private final CommentService commentService;
@@ -33,8 +34,8 @@ public class CommentController {
     }
 
     @PostMapping("/delete/{id}")
-    public Long updateBoard(@PathVariable Long id){
-        return commentService.deleteComment(id);
+    public Long updateBoard(@PathVariable Long id,@RequestBody Map<String, String> passwordMap){
+        return commentService.deleteComment(id,passwordMap.get("password"));
     }
 
 }

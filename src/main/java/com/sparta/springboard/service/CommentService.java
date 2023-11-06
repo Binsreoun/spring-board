@@ -34,15 +34,15 @@ public class CommentService {
         return new CommentResponseDto(comment);
     }
 
-    public Long deleteComment(Long id) {
-        Comment comment = findCommentById(id);
+    public Long deleteComment(Long id,String password) {
+        Comment comment = findCommentById(id,password);
         commentRepository.delete(comment);
         return id;
     }
 
-    private Comment findCommentById(Long id) {
-        return commentRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("선택한 게시물이 존재하지 않습니다.")
+    private Comment findCommentById(Long id,String password) {
+        return commentRepository.findById(id).filter(commet -> commet.getPassword().equals(password)).orElseThrow(
+                () -> new IllegalArgumentException("선택한 게시물이 존재하지 않거나, 비밀번호가 일치하지 않습니다.")
         );
     }
     private Comment findCommentAndCheckedPassword(Long id, CommentRequestDto commentRequestDto) {
